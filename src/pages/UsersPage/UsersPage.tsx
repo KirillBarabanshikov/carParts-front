@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { BiPlus } from 'react-icons/bi';
-import { AddUserModal } from '@/features/user';
+import { EditAddUserModal } from '@/features/user';
 
 export const UsersPage = () => {
   const { data: users, isLoading } = useGetUsersQuery();
@@ -41,7 +41,7 @@ export const UsersPage = () => {
           <CircularProgress isIndeterminate color={'orange.500'} />
         </Center>
       )}
-      <AddUserModal isOpen={isOpen} onClose={onClose} isCentered />
+      <EditAddUserModal isOpen={isOpen} onClose={onClose} isCentered />
     </Container>
   );
 };

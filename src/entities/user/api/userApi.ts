@@ -38,6 +38,15 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [USER_TAG],
     }),
+
+    editUser: build.mutation({
+      query: ({ body, id }) => ({
+        url: `/api/users/${id}`,
+        method: 'PATCH',
+        body,
+      }),
+      invalidatesTags: [USER_TAG],
+    }),
   }),
 });
 
@@ -47,4 +56,5 @@ export const {
   useGetUserRolesQuery,
   useCreateUserMutation,
   useDeleteUserMutation,
+  useEditUserMutation,
 } = userApi;

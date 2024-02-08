@@ -8,12 +8,14 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { BiChevronDown } from 'react-icons/bi';
 import { CustomBox } from '@/shared/ui';
 import { useDeleteUserMutation, User } from '@/entities/user';
 import { FC } from 'react';
 import { formatUserRole } from '@/shared/lib';
+import { EditAddUserModal } from '@/features/user';
 
 interface IUserCardProps {
   user: User;
@@ -21,9 +23,10 @@ interface IUserCardProps {
 
 export const UserCard: FC<IUserCardProps> = ({ user }) => {
   const [deleteUser] = useDeleteUserMutation();
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <div>
+    <>
       <CustomBox p={'40px'}>
         <Flex alignItems={'center'} justifyContent={'space-between'}>
           <Box>
@@ -39,12 +42,13 @@ export const UserCard: FC<IUserCardProps> = ({ user }) => {
               Действие
             </MenuButton>
             <MenuList>
-              <MenuItem>Редактировать</MenuItem>
+              <MenuItem onClick={onOpen}>Редактировать</MenuItem>
               <MenuItem onClick={async () => await deleteUser(user.id)}>Удалить</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
       </CustomBox>
-    </div>
+      <EditAddUserModal isOpen={isOpen} onClose={onClose} isCentered user={user} />
+    </>
   );
 };

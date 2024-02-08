@@ -5,4 +5,5 @@ export {
   useGetUserRolesQuery,
   useCreateUserMutation,
   useDeleteUserMutation,
+  useEditUserMutation,
 } from './userApi.ts';

@@ -1,1 +1,1 @@
-export { AddUserModal } from './addUser';
+export { EditAddUserModal } from './addUser';

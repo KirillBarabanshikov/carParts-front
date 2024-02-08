@@ -1,1 +1,1 @@
-export { AddUserModal } from './ui/AddUserModal.tsx';
+export { EditAddUserModal } from './ui/EditAddUserModal.tsx';
