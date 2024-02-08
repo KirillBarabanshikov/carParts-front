@@ -1,8 +1,9 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { DashboardPage, LoginPage } from '@/pages';
+import { DashboardPage, LoginPage, UsersPage } from '@/pages';
 import { useAppSelector } from '@/shared/hooks';
-import { selectIsAuth } from '@/entities/session';
+import { selectIsAdmin, selectIsAuth } from '@/entities/session';
 import { FC, PropsWithChildren } from 'react';
+import { baseLayout, emptyLayout } from '@/app/layouts';
 
 const AuthGuard: FC<PropsWithChildren> = ({ children }) => {
   const isAuth = useAppSelector(selectIsAuth);
@@ -20,21 +21,39 @@ const GuestGuard: FC<PropsWithChildren> = ({ children }) => {
   return children;
 };
 
+const UserGuard: FC<PropsWithChildren> = ({ children }) => {
+  const isAdmin = useAppSelector(selectIsAdmin);
+
+  if (!isAdmin) return <Navigate to={'/'} />;
+
+  return children;
+};
+
 export const router = createBrowserRouter([
   {
-    path: '/login',
-    element: (
-      <AuthGuard>
-        <LoginPage />
-      </AuthGuard>
-    ),
+    element: <AuthGuard>{emptyLayout}</AuthGuard>,
+    children: [
+      {
+        element: <LoginPage />,
+        path: '/login',
+      },
+    ],
   },
   {
-    path: '/',
-    element: (
-      <GuestGuard>
-        <DashboardPage />
-      </GuestGuard>
-    ),
+    element: <GuestGuard>{baseLayout}</GuestGuard>,
+    children: [
+      {
+        element: <DashboardPage />,
+        path: '/',
+      },
+      {
+        element: (
+          <UserGuard>
+            <UsersPage />
+          </UserGuard>
+        ),
+        path: '/users',
+      },
+    ],
   },
 ]);
