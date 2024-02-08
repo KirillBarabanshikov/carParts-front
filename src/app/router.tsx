@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { DashboardPage, LoginPage, UsersPage } from '@/pages';
+import { DashboardPage, LoginPage, OrdersPage, PartsPage, SuppliersPage, UsersPage } from '@/pages';
 import { useAppSelector } from '@/shared/hooks';
 import { selectIsAdmin, selectIsAuth } from '@/entities/session';
 import { FC, PropsWithChildren } from 'react';
@@ -45,6 +45,18 @@ export const router = createBrowserRouter([
       {
         element: <DashboardPage />,
         path: '/',
+      },
+      {
+        element: <OrdersPage />,
+        path: '/orders',
+      },
+      {
+        element: <SuppliersPage />,
+        path: '/suppliers',
+      },
+      {
+        element: <PartsPage />,
+        path: '/parts',
       },
       {
         element: (
