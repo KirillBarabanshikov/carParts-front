@@ -1,9 +1,9 @@
 import { Layout } from '@/shared/ui';
 import { Sidebar, Header } from '@/widgets';
-import { useMediaQuery } from '@chakra-ui/react';
+import { useMobile } from '@/shared/hooks';
 
 export const BaseLayout = () => {
-  const [isMobile] = useMediaQuery('(max-width: 992px)');
+  const { isMobile } = useMobile();
 
   return <Layout slot={isMobile ? <Header /> : <Sidebar />} />;
 };
