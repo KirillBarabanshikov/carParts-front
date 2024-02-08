@@ -45,7 +45,7 @@ export const LoginForm = () => {
       </FormControl>
       <FormControl isInvalid={!!errors.password} mt={'24px'}>
         <FormLabel htmlFor='password'>Пароль</FormLabel>
-        <Input id='password' placeholder='Пароль' {...register('password')} />
+        <Input id='password' type={'password'} placeholder='Пароль' {...register('password')} />
         <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
       </FormControl>
       <Button type={'submit'} mt={'40px'} isLoading={isLoading} colorScheme={'orange'} w={'100%'}>
