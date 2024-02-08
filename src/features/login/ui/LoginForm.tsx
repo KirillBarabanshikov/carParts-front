@@ -1,11 +1,4 @@
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  useToast,
-} from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useLoginMutation } from '@/entities/session';
@@ -15,7 +8,6 @@ import { useLazyGetCurrentUserQuery } from '@/entities/user';
 export const LoginForm = () => {
   const [login, { isLoading: isLoginLoading }] = useLoginMutation();
   const [getUser, { isLoading: isUserLoading }] = useLazyGetCurrentUserQuery();
-  const toast = useToast();
   const {
     register,
     handleSubmit,
@@ -25,15 +17,8 @@ export const LoginForm = () => {
   const isLoading = isLoginLoading || isUserLoading;
 
   async function onSubmit(data: FormData) {
-    try {
-      await login(data).unwrap();
-      await getUser().unwrap();
-    } catch (e) {
-      toast({
-        title: 'error',
-        status: 'error',
-      });
-    }
+    await login(data).unwrap();
+    await getUser().unwrap();
   }
 
   return (

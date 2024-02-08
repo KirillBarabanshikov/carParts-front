@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { baseApi } from '@/shared/api';
+import { baseApi, rtkQueryErrorLogger } from '@/shared/api';
 import { sessionSlice } from '@/entities/session';
 import {
   persistStore,
@@ -31,7 +31,9 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(baseApi.middleware),
+    })
+      .concat(baseApi.middleware)
+      .concat(rtkQueryErrorLogger),
 });
 
 export const persistedStore = persistStore(store);
