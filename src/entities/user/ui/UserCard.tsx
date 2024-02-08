@@ -1,8 +1,9 @@
 import {
   Box,
-  Button,
   Flex,
   Heading,
+  Icon,
+  IconButton,
   Menu,
   MenuButton,
   MenuItem,
@@ -10,7 +11,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import { BiChevronDown } from 'react-icons/bi';
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { CustomBox } from '@/shared/ui';
 import { useDeleteUserMutation, User } from '@/entities/user';
 import { FC } from 'react';
@@ -38,7 +39,7 @@ export const UserCard: FC<IUserCardProps> = ({ user }) => {
             </Text>
           </Box>
           <Menu>
-            <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+            <MenuButton as={IconButton} icon={<Icon as={BiDotsVerticalRounded} boxSize={'20px'} />}>
               Действие
             </MenuButton>
             <MenuList>
