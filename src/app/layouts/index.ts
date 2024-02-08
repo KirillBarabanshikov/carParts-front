@@ -1,2 +1,2 @@
-export { emptyLayout } from './emptyLayout.tsx';
-export { baseLayout } from './baseLayout.tsx';
+export { EmptyLayout } from './EmptyLayout.tsx';
+export { BaseLayout } from './BaseLayout.tsx';

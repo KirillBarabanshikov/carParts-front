@@ -3,7 +3,7 @@ import { DashboardPage, LoginPage, OrdersPage, PartsPage, SuppliersPage, UsersPa
 import { useAppSelector } from '@/shared/hooks';
 import { selectIsAdmin, selectIsAuth } from '@/entities/session';
 import { FC, PropsWithChildren } from 'react';
-import { baseLayout, emptyLayout } from '@/app/layouts';
+import { EmptyLayout, BaseLayout } from '@/app/layouts';
 
 const AuthGuard: FC<PropsWithChildren> = ({ children }) => {
   const isAuth = useAppSelector(selectIsAuth);
@@ -31,7 +31,11 @@ const UserGuard: FC<PropsWithChildren> = ({ children }) => {
 
 export const router = createBrowserRouter([
   {
-    element: <AuthGuard>{emptyLayout}</AuthGuard>,
+    element: (
+      <AuthGuard>
+        <EmptyLayout />
+      </AuthGuard>
+    ),
     children: [
       {
         element: <LoginPage />,
@@ -40,7 +44,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    element: <GuestGuard>{baseLayout}</GuestGuard>,
+    element: (
+      <GuestGuard>
+        <BaseLayout />
+      </GuestGuard>
+    ),
     children: [
       {
         element: <DashboardPage />,

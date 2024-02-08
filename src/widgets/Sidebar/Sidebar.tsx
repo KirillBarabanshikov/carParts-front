@@ -1,43 +1,10 @@
-import { FC, Fragment } from 'react';
-import { Box, Button, Heading, Icon, VStack } from '@chakra-ui/react';
-import { Link, NavLink } from 'react-router-dom';
-import { BiBarChartAlt2, BiUser, BiPackage, BiWrench, BiIdCard } from 'react-icons/bi';
+import { FC } from 'react';
+import { Box, Heading } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { LogoutButton } from '@/features/logout';
-import { useAppSelector } from '@/shared/hooks';
-import { selectIsAdmin } from '@/entities/session';
-
-const navLinks = [
-  {
-    title: 'Статистика',
-    path: '/',
-    icon: BiBarChartAlt2,
-  },
-  {
-    title: 'Заказы',
-    path: '/orders',
-    icon: BiPackage,
-  },
-  {
-    title: 'Поставщики',
-    path: '/suppliers',
-    icon: BiIdCard,
-  },
-  {
-    title: 'Запчасти',
-    path: '/parts',
-    icon: BiWrench,
-  },
-  {
-    title: 'Пользователи',
-    path: '/users',
-    icon: BiUser,
-    isAdmin: true,
-  },
-];
+import { NavList } from '../NavList';
 
 export const Sidebar: FC = () => {
-  const isAdmin = useAppSelector(selectIsAdmin);
-
   return (
     <Box
       as={'aside'}
@@ -60,29 +27,7 @@ export const Sidebar: FC = () => {
             CarParts
           </Heading>
         </Link>
-
-        <VStack w={'100%'} mt={'40px'}>
-          {navLinks.map((link) => {
-            if (link.isAdmin && !isAdmin) return <Fragment key={link.path}></Fragment>;
-
-            return (
-              <NavLink key={link.path} to={link.path} style={{ width: '100%' }}>
-                {({ isActive }) => (
-                  <Button
-                    variant={'ghost'}
-                    colorScheme={isActive ? 'orange' : 'gray'}
-                    isActive={isActive}
-                    leftIcon={<Icon as={link.icon} boxSize={'20px'} />}
-                    w={'100%'}
-                    justifyContent={'start'}
-                  >
-                    {link.title}
-                  </Button>
-                )}
-              </NavLink>
-            );
-          })}
-        </VStack>
+        <NavList />
       </Box>
 
       <LogoutButton />

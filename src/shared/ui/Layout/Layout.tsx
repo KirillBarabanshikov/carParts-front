@@ -3,19 +3,13 @@ import { Outlet } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 
 interface ILayoutProps {
-  sidebarSlot?: ReactNode;
+  slot?: ReactNode;
 }
 
-export const Layout: FC<ILayoutProps> = ({ sidebarSlot }) => {
-  const props = sidebarSlot
-    ? {
-        display: 'flex',
-      }
-    : {};
-
+export const Layout: FC<ILayoutProps> = ({ slot }) => {
   return (
-    <Box className={'wrapper'} {...props}>
-      {sidebarSlot}
+    <Box className={'wrapper'} display={'flex'} flexDir={{ base: 'column', lg: 'row' }}>
+      {slot}
       <Box as={'main'} flex={1}>
         <Outlet />
       </Box>
