@@ -1,1 +1,1 @@
-export type { User, Role } from './types.ts';
+export type { User, Role, UserRole } from './types.ts';

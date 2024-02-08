@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import { Box, Button, Heading, Icon, VStack } from '@chakra-ui/react';
 import { Link, NavLink } from 'react-router-dom';
 import { BiBarChartAlt2, BiUser, BiPackage, BiWrench, BiIdCard } from 'react-icons/bi';
@@ -50,6 +50,9 @@ export const Sidebar: FC = () => {
       display={'flex'}
       flexDir={'column'}
       justifyContent={'space-between'}
+      position={'sticky'}
+      top={'0'}
+      height={'100vh'}
     >
       <Box>
         <Link to={'/'}>
@@ -60,7 +63,7 @@ export const Sidebar: FC = () => {
 
         <VStack w={'100%'} mt={'40px'}>
           {navLinks.map((link) => {
-            if (link.isAdmin && !isAdmin) return <></>;
+            if (link.isAdmin && !isAdmin) return <Fragment key={link.path}></Fragment>;
 
             return (
               <NavLink key={link.path} to={link.path} style={{ width: '100%' }}>

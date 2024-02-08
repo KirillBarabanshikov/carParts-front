@@ -4,7 +4,7 @@ export interface User {
   role: UserRole;
 }
 
-interface UserRole {
+export interface UserRole {
   id: number;
   title: Role;
 }

@@ -4,9 +4,10 @@ import { createStandaloneToast } from '@chakra-ui/react';
 const { toast } = createStandaloneToast();
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action: any) => {
+  console.log(action);
   if (isRejectedWithValue(action)) {
     toast({
-      title: action.payload.data?.detail ?? action.error.message,
+      title: String(action.payload.data.detail),
       status: 'error',
     });
   }

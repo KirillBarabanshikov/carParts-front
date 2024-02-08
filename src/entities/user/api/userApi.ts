@@ -1,5 +1,5 @@
-import { baseApi } from '@/shared/api';
-import { User } from '../model/';
+import { baseApi, USER_TAG } from '@/shared/api';
+import { User, UserRole } from '../model/';
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -13,8 +13,38 @@ export const userApi = baseApi.injectEndpoints({
       query: () => ({
         url: '/api/users',
       }),
+      providesTags: [USER_TAG],
+    }),
+
+    getUserRoles: build.query<UserRole[], void>({
+      query: () => ({
+        url: '/api/roles',
+      }),
+    }),
+
+    createUser: build.mutation({
+      query: (body) => ({
+        url: '/api/users',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [USER_TAG],
+    }),
+
+    deleteUser: build.mutation({
+      query: (id) => ({
+        url: `/api/users/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [USER_TAG],
     }),
   }),
 });
 
-export const { useGetUsersQuery, useLazyGetCurrentUserQuery } = userApi;
+export const {
+  useGetUsersQuery,
+  useLazyGetCurrentUserQuery,
+  useGetUserRolesQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation,
+} = userApi;

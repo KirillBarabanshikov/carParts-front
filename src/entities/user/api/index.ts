@@ -1,1 +1,8 @@
-export { userApi, useGetUsersQuery, useLazyGetCurrentUserQuery } from './userApi.ts';
+export {
+  userApi,
+  useGetUsersQuery,
+  useLazyGetCurrentUserQuery,
+  useGetUserRolesQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation,
+} from './userApi.ts';

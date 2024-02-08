@@ -1,13 +1,47 @@
-import { useGetUsersQuery } from '@/entities/user';
-import { CircularProgress } from '@chakra-ui/react';
+import { useGetUsersQuery, UserCard } from '@/entities/user';
+import {
+  Button,
+  Center,
+  CircularProgress,
+  Container,
+  Flex,
+  Heading,
+  Icon,
+  Stack,
+  useDisclosure,
+} from '@chakra-ui/react';
+import { BiPlus } from 'react-icons/bi';
+import { AddUserModal } from '@/features/user';
 
 export const UsersPage = () => {
   const { data: users, isLoading } = useGetUsersQuery();
+  const { onOpen, isOpen, onClose } = useDisclosure();
 
   return (
-    <div>
-      {isLoading && <CircularProgress isIndeterminate color='green.300' />}
-      {users && users.map((user) => <div key={user.id}>{user.login}</div>)}
-    </div>
+    <Container maxW={'8xl'} py={'24px'}>
+      <Flex alignItems={'center'} justifyContent={'space-between'} mb={'40px'}>
+        <Heading>Пользователи</Heading>
+        <Button
+          onClick={onOpen}
+          colorScheme={'orange'}
+          leftIcon={<Icon as={BiPlus} boxSize={'20px'} />}
+        >
+          Добавить
+        </Button>
+      </Flex>
+
+      {users && !isLoading ? (
+        <Stack spacing={'4'}>
+          {users.map((user) => {
+            return <UserCard key={user.id} user={user}></UserCard>;
+          })}
+        </Stack>
+      ) : (
+        <Center>
+          <CircularProgress isIndeterminate color={'orange.500'} />
+        </Center>
+      )}
+      <AddUserModal isOpen={isOpen} onClose={onClose} isCentered />
+    </Container>
   );
 };

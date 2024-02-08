@@ -16,9 +16,9 @@ export const Layout: FC<ILayoutProps> = ({ sidebarSlot }) => {
   return (
     <Box className={'wrapper'} {...props}>
       {sidebarSlot}
-      <main>
+      <Box as={'main'} flex={1}>
         <Outlet />
-      </main>
+      </Box>
     </Box>
   );
 };
