@@ -41,7 +41,12 @@ export const EditAddUserModal: FC<IEditAddUserModal> = ({ user, ...props }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      isEdit: !!user,
+    },
+  });
 
   async function onSubmit(data: any) {
     if (user) {
