@@ -1,42 +1,42 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 
 const PWAOptions: Partial<VitePWAOptions> = {
-  mode: 'development',
-  base: '/',
-  includeAssets: ['favicon.svg'],
+  registerType: 'autoUpdate',
+  includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
   manifest: {
-    name: 'PWA Router',
-    short_name: 'PWA Router',
-    theme_color: '#ffffff',
+    name: 'CarParts',
+    short_name: 'CarParts',
+    theme_color: '#000000',
     icons: [
       {
-        src: 'pwa-192x192.png', // <== don't add slash, for testing
+        src: 'pwa-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
+      },
+      {
+        src: 'pwa-192x192.png',
         sizes: '192x192',
         type: 'image/png',
       },
       {
-        src: 'pwa-512x512.png', // <== don't remove slash, for testing
+        src: 'pwa-512x512.png',
         sizes: '512x512',
         type: 'image/png',
+        purpose: 'any',
       },
       {
-        src: 'pwa-512x512.png', // <== don't add slash, for testing
+        src: 'maskable-icon-512x512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'any maskable',
+        purpose: 'maskable',
       },
     ],
   },
-  devOptions: {
-    enabled: process.env.SW_DEV === 'true',
-    type: 'module',
-    navigateFallback: 'index.html',
-  },
-}
+};
 export default defineConfig({
   plugins: [react(), VitePWA(PWAOptions)],
   resolve: {
@@ -44,4 +44,4 @@ export default defineConfig({
       '@': '/src',
     },
   },
-})
+});
