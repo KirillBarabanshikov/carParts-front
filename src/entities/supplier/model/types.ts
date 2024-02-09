@@ -1,8 +1,10 @@
+import { IPart } from '@/entities/part';
+
 export interface ISupplier {
   id: number;
   title: string;
   address: string;
   email?: string;
   phone?: string;
-  parts: [];
+  parts: Omit<IPart, 'supplier'>[];
 }
