@@ -25,7 +25,7 @@ import {
   useGetUserRolesQuery,
   User,
 } from '@/entities/user';
-import { formatUserRole } from '@/shared/lib';
+import { formatUserRole, getCleanData } from '@/shared/lib';
 
 interface IEditAddUserModal extends Omit<ModalProps, 'children'> {
   user?: User;
@@ -43,21 +43,18 @@ export const EditAddUserModal: FC<IEditAddUserModal> = ({ user, ...props }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      isEdit: !!user,
-    },
   });
 
   async function onSubmit(data: any) {
     if (user) {
-      await editUser({ body: data, id: user.id })
+      await editUser({ body: getCleanData(data), id: user.id })
         .unwrap()
         .then(() => {
           props.onClose();
           reset();
         });
     } else {
-      await createUser(data)
+      await createUser(getCleanData(data))
         .unwrap()
         .then(() => {
           props.onClose();

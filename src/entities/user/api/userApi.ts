@@ -11,20 +11,20 @@ export const userApi = baseApi.injectEndpoints({
 
     getUsers: build.query<User[], void>({
       query: () => ({
-        url: '/api/users',
+        url: '/api/users/',
       }),
       providesTags: [USER_TAG],
     }),
 
     getUserRoles: build.query<UserRole[], void>({
       query: () => ({
-        url: '/api/roles',
+        url: '/api/roles/',
       }),
     }),
 
     createUser: build.mutation({
       query: (body) => ({
-        url: '/api/users',
+        url: '/api/users/',
         method: 'POST',
         body,
       }),

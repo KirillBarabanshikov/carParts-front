@@ -7,7 +7,7 @@ export const rtkQueryErrorLogger: Middleware = () => (next) => (action: any) => 
   console.log(action);
   if (isRejectedWithValue(action)) {
     toast({
-      title: String(action.payload.data.detail),
+      title: String(action.payload.data?.detail ?? 'Error'),
       status: 'error',
     });
   }
