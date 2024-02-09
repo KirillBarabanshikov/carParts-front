@@ -10,7 +10,7 @@ const PWAOptions: Partial<VitePWAOptions> = {
   manifest: {
     name: 'CarParts',
     short_name: 'CarParts',
-    theme_color: '#000000',
+    theme_color: '#f3f6f7',
     icons: [
       {
         src: 'pwa-64x64.png',
