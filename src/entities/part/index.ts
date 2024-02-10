@@ -8,4 +8,4 @@ export {
 
 export type { IPart } from './model';
 
-export {} from './ui';
+export { PartCard } from './ui';

@@ -1,1 +1,1 @@
-export type { IOrder, IOrderStatus } from './types.ts';
+export type { IOrder, IOrderStatus, TOrderStatus } from './types.ts';

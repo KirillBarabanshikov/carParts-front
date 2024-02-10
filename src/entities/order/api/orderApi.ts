@@ -1,5 +1,5 @@
 import { baseApi, ORDER_TAG } from '@/shared/api';
-import { IOrder } from '@/entities/order/model';
+import { IOrder, IOrderStatus } from '@/entities/order/model';
 
 export const orderApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -8,6 +8,12 @@ export const orderApi = baseApi.injectEndpoints({
         url: '/api/orders/',
       }),
       providesTags: [ORDER_TAG],
+    }),
+
+    getOrderStatuses: build.query<IOrderStatus[], void>({
+      query: () => ({
+        url: '/api/orderStatuses/',
+      }),
     }),
 
     createOrder: build.mutation({
@@ -43,4 +49,5 @@ export const {
   useCreateOrderMutation,
   useDeleteOrderMutation,
   useEditOrderMutation,
+  useGetOrderStatusesQuery,
 } = orderApi;

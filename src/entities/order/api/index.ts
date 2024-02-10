@@ -4,4 +4,5 @@ export {
   useDeleteOrderMutation,
   useEditOrderMutation,
   useGetOrdersQuery,
+  useGetOrderStatusesQuery,
 } from './orderApi.ts';

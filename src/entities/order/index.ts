@@ -4,5 +4,7 @@ export {
   useDeleteOrderMutation,
   useCreateOrderMutation,
   useGetOrdersQuery,
+  useGetOrderStatusesQuery,
 } from './api';
-export type { IOrder, IOrderStatus } from './model';
+export type { IOrder, IOrderStatus, TOrderStatus } from './model';
+export { OrderRow } from './ui';

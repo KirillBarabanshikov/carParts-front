@@ -9,7 +9,7 @@ export interface IOrder {
 
 export interface IOrderStatus {
   id: number;
-  title: string;
+  title: TOrderStatus;
 }
 
 export interface IOrderPart {
@@ -19,3 +19,5 @@ export interface IOrderPart {
   total: number;
   part: IPart;
 }
+
+export type TOrderStatus = 'STATUS_CREATED' | 'STATUS_TRANSIT' | 'STATUS_DONE';
