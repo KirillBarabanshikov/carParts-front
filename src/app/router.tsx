@@ -10,8 +10,9 @@ import {
 } from '@/pages';
 import { useAppSelector } from '@/shared/hooks';
 import { selectIsAdmin, selectIsAuth } from '@/entities/session';
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, Suspense } from 'react';
 import { EmptyLayout, BaseLayout } from '@/app/layouts';
+import { Progress } from '@chakra-ui/react';
 
 const AuthGuard: FC<PropsWithChildren> = ({ children }) => {
   const isAuth = useAppSelector(selectIsAuth);
@@ -39,7 +40,11 @@ const UserGuard: FC<PropsWithChildren> = ({ children }) => {
 
 export const router = createBrowserRouter([
   {
-    element: <MainPage />,
+    element: (
+      <Suspense fallback={<Progress size='xs' isIndeterminate colorScheme={'orange'} />}>
+        <MainPage />
+      </Suspense>
+    ),
     path: '/',
   },
   {

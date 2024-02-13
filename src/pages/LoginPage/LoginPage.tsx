@@ -3,7 +3,7 @@ import { Container, Heading } from '@chakra-ui/react';
 import { LoginForm } from '@/features/login';
 import { CustomBox } from '@/shared/ui';
 
-export const LoginPage: FC = () => {
+const LoginPage: FC = () => {
   return (
     <Container h={'100vh'} display={'flex'} alignItems={'center'}>
       <CustomBox p={'40px'} width={'100%'}>
@@ -13,3 +13,5 @@ export const LoginPage: FC = () => {
     </Container>
   );
 };
+
+export default LoginPage;

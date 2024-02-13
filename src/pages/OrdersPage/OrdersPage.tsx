@@ -16,7 +16,7 @@ import { CustomBox, ResponsiveButton } from '@/shared/ui';
 import { OrderRow, useGetOrdersQuery } from '@/entities/order';
 import { AddOrderModal } from '@/features/order/editAddOrder';
 
-export const OrdersPage = () => {
+const OrdersPage = () => {
   const { data: orders, isLoading } = useGetOrdersQuery();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -58,3 +58,5 @@ export const OrdersPage = () => {
     </Container>
   );
 };
+
+export default OrdersPage;

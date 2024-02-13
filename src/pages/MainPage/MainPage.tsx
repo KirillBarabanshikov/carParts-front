@@ -3,7 +3,7 @@ import { Box, Container } from '@chakra-ui/react';
 
 import { Header, Footer, Contacts, Form, Benefits, Services } from './components';
 
-export const MainPage: FC = () => {
+const MainPage: FC = () => {
   const formRef = useRef<HTMLDivElement>(null);
 
   const scrollToForm = () => {
@@ -29,3 +29,5 @@ export const MainPage: FC = () => {
     </>
   );
 };
+
+export default MainPage;

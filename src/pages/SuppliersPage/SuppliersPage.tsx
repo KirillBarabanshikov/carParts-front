@@ -11,7 +11,7 @@ import { ResponsiveButton } from '@/shared/ui';
 import { SupplierCard, useGetSuppliersQuery } from '@/entities/supplier';
 import { EditAddSupplierModal } from '@/features/supplier/editAddSupplier';
 
-export const SuppliersPage = () => {
+const SuppliersPage = () => {
   const { data: suppliers, isLoading } = useGetSuppliersQuery();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -38,3 +38,5 @@ export const SuppliersPage = () => {
     </Container>
   );
 };
+
+export default SuppliersPage;

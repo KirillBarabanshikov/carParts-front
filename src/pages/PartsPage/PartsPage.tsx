@@ -11,7 +11,7 @@ import { ResponsiveButton } from '@/shared/ui';
 import { PartCard, useGetPartsQuery } from '@/entities/part';
 import { EditAddPartModal } from '@/features/part/editAddPart';
 
-export const PartsPage = () => {
+const PartsPage = () => {
   const { data: parts, isLoading } = useGetPartsQuery();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -38,3 +38,5 @@ export const PartsPage = () => {
     </Container>
   );
 };
+
+export default PartsPage;

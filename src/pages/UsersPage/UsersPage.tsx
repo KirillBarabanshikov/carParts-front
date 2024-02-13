@@ -11,7 +11,7 @@ import {
 import { EditAddUserModal } from '@/features/user';
 import { ResponsiveButton } from '@/shared/ui';
 
-export const UsersPage = () => {
+const UsersPage = () => {
   const { data: users, isLoading } = useGetUsersQuery();
   const { onOpen, isOpen, onClose } = useDisclosure();
 
@@ -37,3 +37,5 @@ export const UsersPage = () => {
     </Container>
   );
 };
+
+export default UsersPage;

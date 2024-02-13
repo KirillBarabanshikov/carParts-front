@@ -1,7 +1,9 @@
-export { MainPage } from './MainPage/MainPage.tsx';
-export { LoginPage } from './LoginPage/LoginPage.tsx';
-export { DashboardPage } from './DashboardPage/DashboardPage.tsx';
-export { UsersPage } from './UsersPage/UsersPage.tsx';
-export { OrdersPage } from './OrdersPage/OrdersPage.tsx';
-export { SuppliersPage } from './SuppliersPage/SuppliersPage.tsx';
-export { PartsPage } from './PartsPage/PartsPage.tsx';
+import React from 'react';
+
+export const DashboardPage = React.lazy(() => import('./DashboardPage/DashboardPage.tsx'));
+export const LoginPage = React.lazy(() => import('./LoginPage/LoginPage.tsx'));
+export const MainPage = React.lazy(() => import('./MainPage/MainPage.tsx'));
+export const OrdersPage = React.lazy(() => import('./OrdersPage/OrdersPage.tsx'));
+export const PartsPage = React.lazy(() => import('./PartsPage/PartsPage.tsx'));
+export const SuppliersPage = React.lazy(() => import('./SuppliersPage/SuppliersPage.tsx'));
+export const UsersPage = React.lazy(() => import('./UsersPage/UsersPage.tsx'));
