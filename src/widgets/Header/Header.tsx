@@ -48,7 +48,7 @@ export const Header = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader>
-            <Link to={'/'}>
+            <Link to={'/statistics'}>
               <Heading as={'h4'} size={'lg'} color={'orange.500'} textAlign={'center'}>
                 CarParts
               </Heading>

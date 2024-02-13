@@ -8,7 +8,7 @@ import { selectIsAdmin } from '@/entities/session';
 const navLinks = [
   {
     title: 'Статистика',
-    path: '/',
+    path: '/statistics',
     icon: BiBarChartAlt2,
   },
   {

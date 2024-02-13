@@ -1,5 +1,13 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { DashboardPage, LoginPage, OrdersPage, PartsPage, SuppliersPage, UsersPage } from '@/pages';
+import {
+  DashboardPage,
+  LoginPage,
+  MainPage,
+  OrdersPage,
+  PartsPage,
+  SuppliersPage,
+  UsersPage,
+} from '@/pages';
 import { useAppSelector } from '@/shared/hooks';
 import { selectIsAdmin, selectIsAuth } from '@/entities/session';
 import { FC, PropsWithChildren } from 'react';
@@ -8,7 +16,7 @@ import { EmptyLayout, BaseLayout } from '@/app/layouts';
 const AuthGuard: FC<PropsWithChildren> = ({ children }) => {
   const isAuth = useAppSelector(selectIsAuth);
 
-  if (isAuth) return <Navigate to={'/'} />;
+  if (isAuth) return <Navigate to={'/statistics'} />;
 
   return children;
 };
@@ -16,7 +24,7 @@ const AuthGuard: FC<PropsWithChildren> = ({ children }) => {
 const GuestGuard: FC<PropsWithChildren> = ({ children }) => {
   const isAuth = useAppSelector(selectIsAuth);
 
-  if (!isAuth) return <Navigate to={'/login'} />;
+  if (!isAuth) return <Navigate to={'/admin'} />;
 
   return children;
 };
@@ -24,12 +32,16 @@ const GuestGuard: FC<PropsWithChildren> = ({ children }) => {
 const UserGuard: FC<PropsWithChildren> = ({ children }) => {
   const isAdmin = useAppSelector(selectIsAdmin);
 
-  if (!isAdmin) return <Navigate to={'/'} />;
+  if (!isAdmin) return <Navigate to={'/statistics'} />;
 
   return children;
 };
 
 export const router = createBrowserRouter([
+  {
+    element: <MainPage />,
+    path: '/',
+  },
   {
     element: (
       <AuthGuard>
@@ -39,7 +51,7 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <LoginPage />,
-        path: '/login',
+        path: '/admin',
       },
     ],
   },
@@ -52,7 +64,7 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <DashboardPage />,
-        path: '/',
+        path: '/statistics',
       },
       {
         element: <OrdersPage />,

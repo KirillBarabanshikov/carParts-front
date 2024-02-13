@@ -1,3 +1,4 @@
+export { MainPage } from './MainPage/MainPage.tsx';
 export { LoginPage } from './LoginPage/LoginPage.tsx';
 export { DashboardPage } from './DashboardPage/DashboardPage.tsx';
 export { UsersPage } from './UsersPage/UsersPage.tsx';
