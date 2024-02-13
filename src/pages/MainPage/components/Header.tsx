@@ -46,7 +46,7 @@ export const Header: FC<IHeaderProps> = ({ scrollToForm }) => {
               textTransform={'uppercase'}
               textAlign={{ base: 'center', lg: 'left' }}
             >
-              Закажи себе и наяривай только так
+              Закажи себе автозапчасть c выгодой до 40%
             </Heading>
             <Button
               mt={{ base: '80px' }}

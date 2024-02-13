@@ -15,10 +15,17 @@ import { forwardRef } from 'react';
 
 const schema = yup
   .object({
-    name: yup.string().required(),
-    phone: yup.string().required(),
-    count: yup.number().required(),
-    part_id: yup.number().required(),
+    name: yup.string().required('Обязательно для заполнения'),
+    phone: yup.string().required('Обязательно для заполнения'),
+    count: yup
+      .number()
+      .typeError('Обязательно для заполнения')
+      .required('Обязательно для заполнения')
+      .min(1, 'Минимум 1'),
+    part_id: yup
+      .number()
+      .typeError('Обязательно для заполнения')
+      .required('Обязательно для заполнения'),
   })
   .required();
 
@@ -50,13 +57,20 @@ export const Form = forwardRef<HTMLDivElement>((_, ref) => {
         <FormControl isInvalid={!!errors.part_id} mt={'20px'}>
           <FormLabel htmlFor='part_id'>Запчасть</FormLabel>
           <Select id={'part_id'} {...register(`part_id`)} size={'lg'}>
+            <option value=''>Выберите запчасть</option>
             <option value={0}>test</option>
           </Select>
           <FormErrorMessage>{errors.part_id?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.count} mt={'20px'}>
           <FormLabel htmlFor={'count'}>Количество</FormLabel>
-          <Input id={'count'} placeholder={'Количество'} {...register('count')} size={'lg'} />
+          <Input
+            id={'count'}
+            type={'number'}
+            placeholder={'Количество'}
+            {...register('count')}
+            size={'lg'}
+          />
           <FormErrorMessage>{errors.count?.message}</FormErrorMessage>
         </FormControl>
         <Button type={'submit'} colorScheme={'orange'} width={'100%'} mt={'40px'} size={'lg'}>
