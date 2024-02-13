@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Link, Stack, Text } from '@chakra-ui/react';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
 export const Contacts = () => {
@@ -30,7 +30,9 @@ export const Contacts = () => {
               Телефон
             </Heading>
             <Text fontSize={'18px'}>
-              <a href={'tel:+79158167454'}>+7 (915) 816 74 54</a>
+              <Link href={'tel:+79158167454'} _hover={{ color: 'orange.500' }}>
+                +7 (915) 816 74 54
+              </Link>
             </Text>
           </Box>
         </Stack>

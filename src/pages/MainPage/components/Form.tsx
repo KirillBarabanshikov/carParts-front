@@ -12,11 +12,12 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { forwardRef } from 'react';
+import InputMask from 'react-input-mask';
 
 const schema = yup
   .object({
     name: yup.string().required('Обязательно для заполнения'),
-    phone: yup.string().required('Обязательно для заполнения'),
+    phone: yup.string().required('Обязательно для заполнения').min(18, 'Не вырный формат'),
     count: yup
       .number()
       .typeError('Обязательно для заполнения')
@@ -34,9 +35,11 @@ export const Form = forwardRef<HTMLDivElement>((_, ref) => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(schema), mode: 'all' });
 
-  const onSubmit = () => {};
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
 
   return (
     <Box mb={{ base: '50px', lg: '150px' }} ref={ref}>
@@ -51,7 +54,15 @@ export const Form = forwardRef<HTMLDivElement>((_, ref) => {
         </FormControl>
         <FormControl isInvalid={!!errors.phone} mt={'20px'}>
           <FormLabel htmlFor={'phone'}>Телефон</FormLabel>
-          <Input id={'phone'} placeholder={'Телефон'} {...register('phone')} size={'lg'} />
+          <Input
+            as={InputMask}
+            id={'phone'}
+            mask='+7 (***) *** ** **'
+            maskChar={null}
+            placeholder={'Телефон'}
+            {...register('phone')}
+            size={'lg'}
+          />
           <FormErrorMessage>{errors.phone?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.part_id} mt={'20px'}>
