@@ -57,7 +57,7 @@ export const Services = () => {
             </Text>
             <Box>
               <Text _groupHover={{ color: 'orange.500' }} transition={'0.3s'} fontSize={'24px'}>
-                Покупка автозапчастей
+                Покупка
               </Text>
               <Text fontSize={{ base: '16px', lg: '18px' }}>
                 Подбор автозапчастей и экспертная проверка
@@ -88,7 +88,7 @@ export const Services = () => {
             </Text>
             <Box>
               <Text _groupHover={{ color: 'orange.500' }} transition={'0.3s'} fontSize={'24px'}>
-                Доставка морем
+                Доставка
               </Text>
               <Text fontSize={{ base: '16px', lg: '18px' }}>
                 Расчет оптимальной стоимости доставки
