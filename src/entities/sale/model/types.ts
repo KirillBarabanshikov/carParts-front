@@ -11,7 +11,9 @@ export interface ISale {
   status: ISaleStatus;
 }
 
-interface ISaleStatus {
+export interface ISaleStatus {
   id: number;
-  title: 'STATUS_CANCELED' | 'STATUS_WAIT' | 'STATUS_SALE';
+  title: TSaleStatus;
 }
+
+export type TSaleStatus = 'STATUS_CANCELED' | 'STATUS_WAIT' | 'STATUS_SALE';

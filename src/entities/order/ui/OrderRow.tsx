@@ -12,26 +12,27 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { BiEdit } from 'react-icons/bi';
-import { getStatusBadge } from '@/shared/lib';
+import { getOrderStatusBadge } from '@/shared/lib';
 import { EditOrderStatusModal } from '@/features/order/editOrderStatus';
 
 interface IOrderRowProps {
   order: IOrder;
+  index: number;
 }
 
-export const OrderRow: FC<IOrderRowProps> = ({ order }) => {
+export const OrderRow: FC<IOrderRowProps> = ({ order, index }) => {
   const [deleteOrder] = useDeleteOrderMutation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <Tr>
-        <Td>{order.id}</Td>
-        <Td>{getStatusBadge(order.status.title)}</Td>
+        <Td>{++index}</Td>
+        <Td>{getOrderStatusBadge(order.status.title)}</Td>
         <Td>
           {order.parts[0].part.code} ({order.parts[0].count} шт.)
         </Td>
-        <Td>{order.total}</Td>
+        <Td>{order.total}₽</Td>
         <Td isNumeric>
           <Menu>
             <MenuButton

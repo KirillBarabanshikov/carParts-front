@@ -4,6 +4,7 @@ export {
   useDeleteSaleMutation,
   useCreateSaleMutation,
   useGetSalesQuery,
+  useGetSalesStatusesQuery,
 } from './api';
 
 export type { ISale } from './model';

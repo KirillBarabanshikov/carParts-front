@@ -72,7 +72,7 @@ const OrdersPage = () => {
             <Table>
               <Thead>
                 <Tr>
-                  <Th>заказ №</Th>
+                  <Th>#</Th>
                   <Th>статус</Th>
                   <Th>запчасть</Th>
                   <Th>итого</Th>
@@ -80,8 +80,8 @@ const OrdersPage = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {sortedOrders.map((order) => (
-                  <OrderRow order={order} />
+                {sortedOrders.map((order, index) => (
+                  <OrderRow order={order} index={index} />
                 ))}
               </Tbody>
             </Table>

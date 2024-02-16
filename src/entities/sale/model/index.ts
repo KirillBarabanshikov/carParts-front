@@ -1,1 +1,1 @@
-export type { ISale } from './types.ts';
+export type { ISale, ISaleStatus, TSaleStatus } from './types.ts';

@@ -1,7 +1,7 @@
 import { TOrderStatus } from '@/entities/order';
 import { Badge } from '@chakra-ui/react';
 
-export function getStatusBadge(status: TOrderStatus) {
+export function getOrderStatusBadge(status: TOrderStatus) {
   switch (status) {
     case 'STATUS_CREATED':
       return <Badge>Создан</Badge>;

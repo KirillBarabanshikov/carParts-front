@@ -4,4 +4,5 @@ export {
   useDeleteSaleMutation,
   useEditSaleMutation,
   useGetSalesQuery,
+  useGetSalesStatusesQuery,
 } from './saleApi.ts';

@@ -1,5 +1,6 @@
 import { baseApi, SALE_TAG } from '@/shared/api';
 import { ISale } from '../model';
+import { ISaleStatus } from '../model';
 
 export const saleApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -8,6 +9,12 @@ export const saleApi = baseApi.injectEndpoints({
         url: '/api/sales/',
       }),
       providesTags: [SALE_TAG],
+    }),
+
+    getSalesStatuses: build.query<ISaleStatus[], void>({
+      query: () => ({
+        url: '/api/salesStatuses/',
+      }),
     }),
 
     createSale: build.mutation({
@@ -40,6 +47,7 @@ export const saleApi = baseApi.injectEndpoints({
 
 export const {
   useGetSalesQuery,
+  useGetSalesStatusesQuery,
   useCreateSaleMutation,
   useDeleteSaleMutation,
   useEditSaleMutation,
