@@ -48,11 +48,16 @@ const OrdersPage = () => {
         <ResponsiveButton onClick={onOpen} />
       </Flex>
 
-      <Flex mb={'40px'} alignItems={'center'} gap={'10px'}>
+      <Flex
+        mb={'40px'}
+        alignItems={{ base: 'start', lg: 'center' }}
+        flexDir={{ base: 'column', lg: 'row' }}
+        gap={'10px'}
+      >
         <Text fontSize={'lg'} fontWeight={'bold'}>
           Статус:
         </Text>
-        <HStack>
+        <HStack flexWrap={'wrap'}>
           {filters.map((filter) => (
             <Button
               key={filter.value}
