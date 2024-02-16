@@ -7,3 +7,5 @@ export const OrdersPage = React.lazy(() => import('./OrdersPage/OrdersPage.tsx')
 export const PartsPage = React.lazy(() => import('./PartsPage/PartsPage.tsx'));
 export const SuppliersPage = React.lazy(() => import('./SuppliersPage/SuppliersPage.tsx'));
 export const UsersPage = React.lazy(() => import('./UsersPage/UsersPage.tsx'));
+
+export const SalesPage = React.lazy(() => import('./SalesPage/SalesPage.tsx'));

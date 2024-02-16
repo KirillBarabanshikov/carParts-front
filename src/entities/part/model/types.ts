@@ -7,4 +7,5 @@ export interface IPart {
   code: string;
   supplier_id: string;
   supplier: Omit<ISupplier, 'parts'>;
+  sale_price: number;
 }

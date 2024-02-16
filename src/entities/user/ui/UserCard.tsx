@@ -28,7 +28,7 @@ export const UserCard: FC<IUserCardProps> = ({ user }) => {
 
   return (
     <>
-      <CustomBox p={'40px'}>
+      <CustomBox p={'40px'} position={'relative'}>
         <Flex alignItems={'center'} justifyContent={'space-between'}>
           <Box>
             <Heading as={'h6'} size={'md'}>
@@ -39,7 +39,13 @@ export const UserCard: FC<IUserCardProps> = ({ user }) => {
             </Text>
           </Box>
           <Menu>
-            <MenuButton as={IconButton} icon={<Icon as={BiDotsVerticalRounded} boxSize={'20px'} />}>
+            <MenuButton
+              as={IconButton}
+              icon={<Icon as={BiDotsVerticalRounded} boxSize={'20px'} />}
+              position={'absolute'}
+              top={'20px'}
+              right={'20px'}
+            >
               Действие
             </MenuButton>
             <MenuList>

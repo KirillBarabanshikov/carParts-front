@@ -28,14 +28,18 @@ export const PartCard: FC<IPartCardProps> = ({ part }) => {
 
   return (
     <CustomBox px={'40px'} py={'24px'} position={'relative'}>
-      <Heading mb={'20px'} size={'lg'}>
-        {part.title}
+      <Heading mb={'20px'} size={'md'}>
+        {part.title} ({part.code})
       </Heading>
-      <HStack alignItems={'start'}>
+      <HStack alignItems={'start'} flexDir={{ base: 'column', lg: 'row' }}>
         <Stack flex={'1'}>
-          <Text>Цена: {part.price}</Text>
+          <Text>Цена поставщика: {part.price}₽</Text>
+          <Text>Цена продажи: {part.sale_price}₽</Text>
         </Stack>
-        <Box flex={'1'}></Box>
+        <Box flex={'1'}>
+          <Text>Поставщик:</Text>
+          <Text>{part.supplier.title}</Text>
+        </Box>
         <Menu>
           <MenuButton
             as={IconButton}

@@ -1,7 +1,14 @@
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Icon, VStack } from '@chakra-ui/react';
-import { BiBarChartAlt2, BiIdCard, BiPackage, BiUser, BiWrench } from 'react-icons/bi';
+import {
+  BiBarChartAlt2,
+  BiIdCard,
+  BiPackage,
+  BiSpreadsheet,
+  BiUser,
+  BiWrench,
+} from 'react-icons/bi';
 import { useAppSelector } from '@/shared/hooks';
 import { selectIsAdmin } from '@/entities/session';
 
@@ -10,6 +17,11 @@ const navLinks = [
     title: 'Статистика',
     path: '/statistics',
     icon: BiBarChartAlt2,
+  },
+  {
+    title: 'Заявки',
+    path: '/sales',
+    icon: BiSpreadsheet,
   },
   {
     title: 'Заказы',

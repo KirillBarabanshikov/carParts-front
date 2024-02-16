@@ -7,17 +7,20 @@ import {
   Heading,
   Input,
   Select,
+  useToast,
 } from '@chakra-ui/react';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { forwardRef } from 'react';
 import InputMask from 'react-input-mask';
+import { useCreateSaleMutation } from '@/entities/sale';
+import { useGetPartsQuery } from '@/entities/part';
 
 const schema = yup
   .object({
     name: yup.string().required('Обязательно для заполнения'),
-    phone: yup.string().required('Обязательно для заполнения').min(18, 'Не вырный формат'),
+    phone: yup.string().required('Обязательно для заполнения').min(12, 'Не верный формат'),
     count: yup
       .number()
       .typeError('Обязательно для заполнения')
@@ -31,14 +34,29 @@ const schema = yup
   .required();
 
 export const Form = forwardRef<HTMLDivElement>((_, ref) => {
+  const [createSale, { isLoading }] = useCreateSaleMutation();
+  const { data: parts } = useGetPartsQuery();
+  const toast = useToast();
   const {
     handleSubmit,
     register,
+    reset,
+    setValue,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema), mode: 'all' });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    try {
+      await createSale(data).unwrap();
+      toast({
+        title: 'Заявка успешно отправлена',
+        status: 'success',
+      });
+      reset();
+      setValue('phone', '');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -57,7 +75,7 @@ export const Form = forwardRef<HTMLDivElement>((_, ref) => {
           <Input
             as={InputMask}
             id={'phone'}
-            mask='+7 (***) *** ** **'
+            mask='+7**********'
             maskChar={null}
             placeholder={'Телефон'}
             {...register('phone')}
@@ -69,7 +87,12 @@ export const Form = forwardRef<HTMLDivElement>((_, ref) => {
           <FormLabel htmlFor='part_id'>Запчасть</FormLabel>
           <Select id={'part_id'} {...register(`part_id`)} size={'lg'}>
             <option value=''>Выберите запчасть</option>
-            <option value={0}>test</option>
+            {parts &&
+              parts.map((part) => (
+                <option key={part.id} value={part.id}>
+                  {part.title}
+                </option>
+              ))}
           </Select>
           <FormErrorMessage>{errors.part_id?.message}</FormErrorMessage>
         </FormControl>
@@ -84,7 +107,14 @@ export const Form = forwardRef<HTMLDivElement>((_, ref) => {
           />
           <FormErrorMessage>{errors.count?.message}</FormErrorMessage>
         </FormControl>
-        <Button type={'submit'} colorScheme={'orange'} width={'100%'} mt={'40px'} size={'lg'}>
+        <Button
+          type={'submit'}
+          colorScheme={'orange'}
+          width={'100%'}
+          mt={'40px'}
+          size={'lg'}
+          isLoading={isLoading}
+        >
           Отправить
         </Button>
       </form>

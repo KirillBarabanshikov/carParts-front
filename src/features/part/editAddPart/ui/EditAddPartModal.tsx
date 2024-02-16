@@ -86,6 +86,17 @@ export const EditAddPartModal: FC<IEditAddSupplierModalProps> = ({ part, ...prop
               <FormErrorMessage>{errors.price?.message}</FormErrorMessage>
             </FormControl>
 
+            <FormControl isInvalid={!!errors.sale_price} mt={'12px'}>
+              <FormLabel htmlFor='sale_price'>Цена продажи</FormLabel>
+              <Input
+                id='sale_price'
+                placeholder='Цена продажи'
+                {...register('sale_price')}
+                defaultValue={part?.sale_price}
+              />
+              <FormErrorMessage>{errors.sale_price?.message}</FormErrorMessage>
+            </FormControl>
+
             <FormControl isInvalid={!!errors.code} mt={'12px'}>
               <FormLabel htmlFor='code'>Артикул</FormLabel>
               <Input

@@ -13,6 +13,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Link,
   useDisclosure,
 } from '@chakra-ui/react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
@@ -27,15 +28,15 @@ export const SupplierCard: FC<ISupplierCardProps> = ({ supplier }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <CustomBox px={'40px'} py={'24px'} position={'relative'}>
-      <Heading mb={'20px'} size={'lg'}>
+      <Heading mb={'20px'} size={'md'}>
         {supplier.title}
       </Heading>
-      <HStack alignItems={'start'}>
+      <HStack alignItems={'start'} spacing={'20px'} flexDir={{ base: 'column', lg: 'row' }}>
         <Stack flex={'1'}>
           <Text>Адрес: {supplier.address}</Text>
           <Text>
             Email:{' '}
-            {supplier.email ?? (
+            {<Link href={`mailto:${supplier.email}`}>{supplier.email}</Link> ?? (
               <Text as={'span'} color={'gray'}>
                 Не указано
               </Text>
@@ -43,7 +44,7 @@ export const SupplierCard: FC<ISupplierCardProps> = ({ supplier }) => {
           </Text>
           <Text>
             Телефон:{' '}
-            {supplier.phone ?? (
+            {<Link href={`tel:${supplier.phone}`}>{supplier.phone}</Link> ?? (
               <Text as={'span'} color={'gray'}>
                 Не указано
               </Text>
@@ -53,10 +54,9 @@ export const SupplierCard: FC<ISupplierCardProps> = ({ supplier }) => {
         <Box flex={'1'}>
           <Text mb={'8px'}>Список запчастей:</Text>
           <Stack>
-            <Text>Делать 1</Text>
-            <Text>Делать 1</Text>
-            <Text>Делать 1</Text>
-            <Text>Делать 1</Text>
+            {supplier.parts.slice(0, 4).map((part) => (
+              <Text>{part.code}</Text>
+            ))}
           </Stack>
         </Box>
         <Menu>

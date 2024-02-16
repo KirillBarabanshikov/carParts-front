@@ -5,6 +5,7 @@ import {
   MainPage,
   OrdersPage,
   PartsPage,
+  SalesPage,
   SuppliersPage,
   UsersPage,
 } from '@/pages';
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       {
         element: <PartsPage />,
         path: '/parts',
+      },
+      {
+        element: <SalesPage />,
+        path: '/sales',
       },
       {
         element: (

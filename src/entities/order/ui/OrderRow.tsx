@@ -28,7 +28,9 @@ export const OrderRow: FC<IOrderRowProps> = ({ order }) => {
       <Tr>
         <Td>{order.id}</Td>
         <Td>{getStatusBadge(order.status.title)}</Td>
-        <Td>{order.parts.length}</Td>
+        <Td>
+          {order.parts[0].part.code} ({order.parts[0].count} шт.)
+        </Td>
         <Td>{order.total}</Td>
         <Td isNumeric>
           <Menu>

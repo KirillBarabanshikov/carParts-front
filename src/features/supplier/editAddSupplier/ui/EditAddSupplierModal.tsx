@@ -20,6 +20,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../model/';
 import { getCleanData } from '@/shared/lib';
+import InputMask from 'react-input-mask';
 
 interface IEditAddSupplierModalProps extends Omit<ModalProps, 'children'> {
   supplier?: ISupplier;
@@ -32,6 +33,7 @@ export const EditAddSupplierModal: FC<IEditAddSupplierModalProps> = ({ supplier,
     handleSubmit,
     register,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -49,6 +51,7 @@ export const EditAddSupplierModal: FC<IEditAddSupplierModalProps> = ({ supplier,
         .then(() => {
           props.onClose();
           reset();
+          setValue('phone', '');
         });
     }
   };
@@ -98,6 +101,9 @@ export const EditAddSupplierModal: FC<IEditAddSupplierModalProps> = ({ supplier,
               <FormLabel htmlFor='phone'>Телефон</FormLabel>
               <Input
                 id='phone'
+                as={InputMask}
+                mask='+7**********'
+                maskChar={null}
                 placeholder='Телефон'
                 {...register('phone')}
                 defaultValue={supplier?.phone}
