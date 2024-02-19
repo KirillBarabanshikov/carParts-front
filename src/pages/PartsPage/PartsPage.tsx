@@ -54,7 +54,7 @@ const PartsPage = () => {
         <Center>
           {sortedParts ? (
             <Text fontSize={'lg'} fontWeight={'bold'}>
-              Запчасть не найден
+              Запчасть не найдена
             </Text>
           ) : (
             <CircularProgress isIndeterminate color={'orange.500'} />

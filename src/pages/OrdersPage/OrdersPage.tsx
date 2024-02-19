@@ -86,7 +86,7 @@ const OrdersPage = () => {
               </Thead>
               <Tbody>
                 {sortedOrders.map((order, index) => (
-                  <OrderRow order={order} index={index} />
+                  <OrderRow key={order.id} order={order} index={index} />
                 ))}
               </Tbody>
             </Table>

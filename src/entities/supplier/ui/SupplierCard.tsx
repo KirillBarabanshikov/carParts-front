@@ -54,8 +54,8 @@ export const SupplierCard: FC<ISupplierCardProps> = ({ supplier }) => {
         <Box flex={'1'}>
           <Text mb={'8px'}>Список запчастей:</Text>
           <Stack>
-            {supplier.parts.slice(0, 4).map((part) => (
-              <Text>{part.code}</Text>
+            {supplier.parts.slice(0, 4).map((part, index) => (
+              <Text key={index}>{part.code}</Text>
             ))}
           </Stack>
         </Box>
