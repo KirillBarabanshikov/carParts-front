@@ -13,11 +13,14 @@ import { CustomBox, ResponsiveButton } from '@/shared/ui';
 import { PartCard, useGetPartsQuery } from '@/entities/part';
 import { EditAddPartModal } from '@/features/part/editAddPart';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { useAppSelector } from '@/shared/hooks';
+import { selectIsAdmin } from '@/entities/session';
 
 const PartsPage = () => {
   const { data: parts, isLoading } = useGetPartsQuery();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [sortedParts, setSortedParts] = useState(parts);
+  const isAdmin = useAppSelector(selectIsAdmin);
 
   useEffect(() => {
     setSortedParts(parts);
@@ -37,7 +40,7 @@ const PartsPage = () => {
     <Container maxW={'8xl'} py={'24px'}>
       <Flex alignItems={'center'} justifyContent={'space-between'} mb={'40px'}>
         <Heading>Запчасти</Heading>
-        <ResponsiveButton onClick={onOpen} />
+        {isAdmin ?? <ResponsiveButton onClick={onOpen} />}
       </Flex>
 
       <CustomBox mb={'40px'} maxW={'500px'}>

@@ -13,11 +13,14 @@ import { CustomBox, ResponsiveButton } from '@/shared/ui';
 import { SupplierCard, useGetSuppliersQuery } from '@/entities/supplier';
 import { EditAddSupplierModal } from '@/features/supplier/editAddSupplier';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { useAppSelector } from '@/shared/hooks';
+import { selectIsAdmin } from '@/entities/session';
 
 const SuppliersPage = () => {
   const { data: suppliers, isLoading } = useGetSuppliersQuery();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [sortedSuppliers, setSortedSuppliers] = useState(suppliers);
+  const isAdmin = useAppSelector(selectIsAdmin);
 
   useEffect(() => {
     setSortedSuppliers(suppliers);
@@ -37,7 +40,7 @@ const SuppliersPage = () => {
     <Container maxW={'8xl'} py={'24px'}>
       <Flex alignItems={'center'} justifyContent={'space-between'} mb={'40px'}>
         <Heading>Поставщики</Heading>
-        <ResponsiveButton onClick={onOpen} />
+        {isAdmin ?? <ResponsiveButton onClick={onOpen} />}
       </Flex>
 
       <CustomBox mb={'40px'} maxW={'500px'}>

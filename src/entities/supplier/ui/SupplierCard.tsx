@@ -18,6 +18,8 @@ import {
 } from '@chakra-ui/react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { EditAddSupplierModal } from '@/features/supplier/editAddSupplier';
+import { useAppSelector } from '@/shared/hooks';
+import { selectIsAdmin } from '@/entities/session';
 
 interface ISupplierCardProps {
   supplier: ISupplier;
@@ -26,6 +28,8 @@ interface ISupplierCardProps {
 export const SupplierCard: FC<ISupplierCardProps> = ({ supplier }) => {
   const [deleteSupplier] = useDeleteSupplierMutation();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const isAdmin = useAppSelector(selectIsAdmin);
+
   return (
     <CustomBox px={'40px'} py={'24px'} position={'relative'}>
       <Heading mb={'20px'} size={'md'}>
@@ -59,21 +63,23 @@ export const SupplierCard: FC<ISupplierCardProps> = ({ supplier }) => {
             ))}
           </Stack>
         </Box>
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            icon={<Icon as={BiDotsVerticalRounded} boxSize={'20px'} />}
-            position={'absolute'}
-            top={'20px'}
-            right={'20px'}
-          >
-            Actions
-          </MenuButton>
-          <MenuList>
-            <MenuItem onClick={onOpen}>Редактировать</MenuItem>
-            <MenuItem onClick={async () => await deleteSupplier(supplier.id)}>Удалить</MenuItem>
-          </MenuList>
-        </Menu>
+        {isAdmin ?? (
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={<Icon as={BiDotsVerticalRounded} boxSize={'20px'} />}
+              position={'absolute'}
+              top={'20px'}
+              right={'20px'}
+            >
+              Actions
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={onOpen}>Редактировать</MenuItem>
+              <MenuItem onClick={async () => await deleteSupplier(supplier.id)}>Удалить</MenuItem>
+            </MenuList>
+          </Menu>
+        )}
       </HStack>
       <EditAddSupplierModal isOpen={isOpen} onClose={onClose} supplier={supplier} />
     </CustomBox>
