@@ -83,7 +83,7 @@ const DashboardPage: FC = () => {
         <Heading>Статистика</Heading>
       </Flex>
 
-      <HStack spacing={'24px'} mb={'24px'} flexDir={{ base: 'column', lg: 'row' }}>
+      <HStack spacing={'24px'} mb={'24px'} flexDir={{ base: 'column', '2xl': 'row' }}>
         <CustomBox flex={'1'} px={'24px'} py={'32px'} width={'100%'}>
           <Flex alignItems={'center'} gap={'24px'}>
             <Icon as={BiSpreadsheet} boxSize={'60px'} color={'orange.500'} />

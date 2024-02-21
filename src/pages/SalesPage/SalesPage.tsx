@@ -68,7 +68,7 @@ const SalesPage = () => {
       </Flex>
 
       {sortedSales && !isLoading ? (
-        <CustomBox>
+        <CustomBox width={{ lg: 'calc(100vw - 302px)', '2xl': 'unset' }}>
           <TableContainer>
             <Table>
               <Thead>
