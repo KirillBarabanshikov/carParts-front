@@ -43,7 +43,7 @@ export const PartCard: FC<IPartCardProps> = ({ part }) => {
           <Text>Поставщик:</Text>
           <Text>{part.supplier.title}</Text>
         </Box>
-        {isAdmin ?? (
+        {isAdmin && (
           <Menu>
             <MenuButton
               as={IconButton}

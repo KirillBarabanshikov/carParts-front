@@ -63,7 +63,7 @@ export const SupplierCard: FC<ISupplierCardProps> = ({ supplier }) => {
             ))}
           </Stack>
         </Box>
-        {isAdmin ?? (
+        {isAdmin && (
           <Menu>
             <MenuButton
               as={IconButton}
