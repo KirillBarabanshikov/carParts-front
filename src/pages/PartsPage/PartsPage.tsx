@@ -40,7 +40,7 @@ const PartsPage = () => {
     <Container maxW={'8xl'} py={'24px'}>
       <Flex alignItems={'center'} justifyContent={'space-between'} mb={'40px'}>
         <Heading>Запчасти</Heading>
-        {isAdmin ?? <ResponsiveButton onClick={onOpen} />}
+        {isAdmin ? <ResponsiveButton onClick={onOpen} /> : <></>}
       </Flex>
 
       <CustomBox mb={'40px'} maxW={'500px'}>
